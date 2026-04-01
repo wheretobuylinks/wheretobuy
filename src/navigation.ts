@@ -111,7 +111,7 @@ export const headerData = {
       ],
     },
     {
-      text: 'Widgets',
+      text: 'TEST',
       href: '#',
     },
   ],
