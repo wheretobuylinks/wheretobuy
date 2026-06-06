@@ -1,7 +1,7 @@
 import { defineConfig } from "tinacms";
 
 export default defineConfig({
-  branch: "main", // O el nombre de tu rama principal (ej: master)
+  branch: "main", 
   clientId: process.env.TINA_CLIENT_ID,
   token: process.env.TINA_TOKEN,
   build: {
@@ -19,7 +19,7 @@ export default defineConfig({
       {
         name: "post",
         label: "Posts (Entradas)",
-        path: "src/content/post", // Aquí es donde tu tema de Astra guarda los artículos
+        path: "src/content/post",
         format: "md",
         fields: [
           {
