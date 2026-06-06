@@ -1,10 +1,9 @@
 import { defineConfig } from "tinacms";
 
-// Configuración adaptada para tu web de Astro
 export default defineConfig({
-  branch: "main", // Si tu rama principal se llama 'master', cambia 'main' por 'master'
-  clientId: process.env.TINA_CLIENT_ID || null,
-  token: process.env.TINA_TOKEN || null,
+  branch: "main", // O el nombre de tu rama principal (ej: master)
+  clientId: process.env.TINA_CLIENT_ID,
+  token: process.env.TINA_TOKEN,
   build: {
     outputFolder: "admin",
     publicFolder: "public",
@@ -19,9 +18,9 @@ export default defineConfig({
     collections: [
       {
         name: "post",
-        label: "Mis Posts",
-        path: "src/data/post", // Aquí es donde están tus textos
-        format: "md", // Si tus archivos terminan en .mdx, cambia "md" por "mdx"
+        label: "Posts (Entradas)",
+        path: "src/content/post", // Aquí es donde tu tema de Astra guarda los artículos
+        format: "md",
         fields: [
           {
             type: "string",
@@ -33,7 +32,7 @@ export default defineConfig({
           {
             type: "rich-text",
             name: "body",
-            label: "Contenido",
+            label: "Cuerpo del artículo",
             isBody: true,
           },
         ],
