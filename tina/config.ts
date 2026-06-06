@@ -1,7 +1,7 @@
 import { defineConfig } from "tinacms";
 
 export default defineConfig({
-  branch: "main", 
+  branch: "cloudflare/workers-autoconfig", 
   // Busca el Client ID de todas las formas posibles según el framework que uses
   clientId: process.env.TINA_CLIENT_ID || process.env.PUBLIC_TINA_CLIENT_ID || process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
   token: process.env.TINA_TOKEN,
