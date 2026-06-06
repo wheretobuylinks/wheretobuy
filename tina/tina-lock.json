@@ -1,0 +1,29 @@
+{
+  "schema": {
+    "collections": [
+      {
+        "label": "Posts (Entradas)",
+        "name": "post",
+        "path": "src/content/post",
+        "format": "md",
+        "matches": {
+          "include": "**/*"
+        },
+        "fields": [
+          {
+            "type": "string",
+            "name": "title",
+            "label": "Título",
+            "required": true
+          }
+        ]
+      }
+    ]
+  },
+  "version": {
+    "fullVersion": "1.6.3",
+    "major": "1",
+    "minor": "6",
+    "patch": "3"
+  }
+}
