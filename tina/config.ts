@@ -3,7 +3,7 @@ import { defineConfig } from "tinacms";
 export default defineConfig({
   branch: "main", 
   // Busca el Client ID de todas las formas posibles según el framework que uses
-  clientId: "53a6b864-54f0-4d88-8b65-06b0691457d2",
+  clientId: "d6b48a49-7f86-4870-9a80-d3fb79cf1a9e",
   token: process.env.TINA_TOKEN,
   build: {
     outputFolder: "admin",
