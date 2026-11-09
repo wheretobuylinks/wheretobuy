@@ -8,11 +8,16 @@ const metadata = { title: 'WhereToBuy — Descubrí productos y dónde comprarlo
 <Layout metadata={metadata}>
   <section class="relative overflow-hidden bg-slate-950">
     <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950"></div>
+    <div class="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-teal-400/10 blur-3xl"></div>
     <div class="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
       <span class="inline-flex rounded-full border border-teal-400/30 bg-teal-400/10 px-4 py-2 text-sm font-medium text-teal-200">Descubrimiento global de productos</span>
       <h1 class="mt-7 max-w-3xl text-5xl font-bold tracking-tight text-white sm:text-7xl">Descubrí eso que buscás.<br/><span class="text-teal-300">Encontrá dónde comprar.</span></h1>
       <p class="mt-6 max-w-xl text-lg leading-8 text-slate-300">Explorá productos seleccionados y encontrá enlaces a tiendas de todo el mundo. Nosotros te ayudamos a descubrir; las tiendas se encargan de la compra.</p>
-      <a href="/products/" class="mt-9 inline-flex rounded-full bg-teal-400 px-7 py-3.5 font-semibold text-slate-950 transition hover:bg-teal-300">Explorar catálogo <span class="ml-2">→</span></a>
+      <form action="/products/" method="GET" class="mt-9 flex max-w-xl flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur sm:flex-row">
+        <label class="flex flex-1 items-center gap-3 px-3"><span class="text-teal-300" aria-hidden="true">⌕</span><input type="search" name="q" placeholder="¿Qué producto estás buscando?" class="w-full bg-transparent py-3 text-white placeholder:text-slate-400 focus:outline-none" aria-label="Buscar productos"/></label>
+        <button type="submit" class="rounded-xl bg-teal-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-teal-300">Buscar productos →</button>
+      </form>
+      <p class="mt-4 text-sm text-slate-400">Explorá el catálogo · Descubrí tiendas de todo el mundo</p>
     </div>
   </section>
   <section class="mx-auto max-w-7xl px-5 py-16 sm:px-8">
