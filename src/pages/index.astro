@@ -2,32 +2,74 @@
 import Layout from '~/layouts/PageLayout.astro';
 import ProductCard from '~/components/products/ProductCard.astro';
 import products from '~/data/products.json';
+
 const items = products.filter((product) => product.status === 'published');
-const metadata = { title: 'WhereToBuy — Descubrí productos y dónde comprarlos', description: 'Descubrí productos seleccionados y encontrá enlaces a tiendas de todo el mundo. WhereToBuy te ayuda a encontrar dónde comprar.' };
+const featured = items[0];
+const metadata = {
+  title: 'WhereToBuy — Descubrí productos. Encontrá dónde comprar.',
+  description: 'Una forma más simple de descubrir productos interesantes y encontrar tiendas de todo el mundo.',
+};
 ---
 <Layout metadata={metadata}>
-  <section class="relative overflow-hidden bg-slate-950">
-    <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950"></div>
-    <div class="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-teal-400/10 blur-3xl"></div>
-    <div class="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
-      <span class="inline-flex rounded-full border border-teal-400/30 bg-teal-400/10 px-4 py-2 text-sm font-medium text-teal-200">Descubrimiento global de productos</span>
-      <h1 class="mt-7 max-w-3xl text-5xl font-bold tracking-tight text-white sm:text-7xl">Descubrí eso que buscás.<br/><span class="text-teal-300">Encontrá dónde comprar.</span></h1>
-      <p class="mt-6 max-w-xl text-lg leading-8 text-slate-300">Explorá productos seleccionados y encontrá enlaces a tiendas de todo el mundo. Nosotros te ayudamos a descubrir; las tiendas se encargan de la compra.</p>
-      <form action="/products/" method="GET" class="mt-9 flex max-w-xl flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur sm:flex-row">
-        <label class="flex flex-1 items-center gap-3 px-3"><span class="text-teal-300" aria-hidden="true">⌕</span><input type="search" name="q" placeholder="¿Qué producto estás buscando?" class="w-full bg-transparent py-3 text-white placeholder:text-slate-400 focus:outline-none" aria-label="Buscar productos"/></label>
-        <button type="submit" class="rounded-xl bg-teal-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-teal-300">Buscar productos →</button>
-      </form>
-      <p class="mt-4 text-sm text-slate-400">Explorá el catálogo · Descubrí tiendas de todo el mundo</p>
+  <section class="relative isolate overflow-hidden bg-[#071b1b] text-white">
+    <div aria-hidden="true" class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_78%_24%,rgba(20,184,166,0.22),transparent_42%),radial-gradient(ellipse_at_12%_90%,rgba(13,148,136,0.15),transparent_38%)]"></div>
+    <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-28">
+      <div>
+        <span class="inline-flex items-center gap-2 rounded-full border border-teal-300/25 bg-teal-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-teal-200"><span class="h-2 w-2 rounded-full bg-teal-300"></span> Descubrimiento global</span>
+        <h1 class="mt-7 max-w-2xl text-5xl font-semibold leading-[1.04] tracking-[-0.045em] sm:text-6xl lg:text-7xl">Encontrá algo<br/>que te <span class="text-teal-300">encante.</span></h1>
+        <p class="mt-6 max-w-lg text-lg leading-8 text-slate-300">Ideas, productos y lugares donde conseguirlos. Explorá con curiosidad; elegí dónde comprar.</p>
+        <form action="/products/" method="GET" class="mt-9 flex max-w-xl flex-col gap-2 rounded-2xl border border-white/10 bg-white/[0.07] p-2 shadow-2xl backdrop-blur sm:flex-row">
+          <label class="flex min-w-0 flex-1 items-center gap-3 px-3"><span class="text-xl text-teal-300" aria-hidden="true">⌕</span><input type="search" name="q" placeholder="¿Qué estás buscando?" aria-label="Buscar productos" class="w-full bg-transparent py-3 text-white placeholder:text-slate-400 focus:outline-none"/></label>
+          <button type="submit" class="rounded-xl bg-teal-300 px-6 py-3 font-semibold text-[#06201e] transition hover:bg-teal-200">Explorar →</button>
+        </form>
+        <div class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-400"><span>✦ Productos seleccionados</span><span>↗ Tiendas externas</span><span>◎ Descubrí a tu ritmo</span></div>
+      </div>
+      <div class="relative mx-auto w-full max-w-lg">
+        <div aria-hidden="true" class="absolute -inset-5 rounded-[2.5rem] bg-teal-400/10 blur-2xl"></div>
+        {featured ? <article class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] p-3 shadow-2xl">
+          <div class="relative overflow-hidden rounded-[1.5rem] bg-[#102b2a]">
+            <img src={featured.image} alt={featured.title.es} fetchpriority="high" class="h-[340px] w-full object-cover sm:h-[430px]"/>
+            {featured.demo && <span class="absolute left-4 top-4 rounded-full bg-amber-100 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-amber-900">Producto de demostración</span>}
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent p-6 pt-20">
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-teal-200">{featured.brand} · {featured.category}</p>
+              <h2 class="mt-2 text-2xl font-semibold tracking-tight text-white">{featured.title.es}</h2>
+              <a href={`/products/${featured.slug}/`} class="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-teal-100">Descubrir producto <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article> : <div class="flex min-h-[360px] items-center justify-center rounded-[2rem] border border-white/10 bg-white/5 p-8 text-center"><p class="text-slate-300">Estamos preparando una selección de productos.</p></div>}
+        <div class="absolute -bottom-5 -left-4 hidden rounded-2xl border border-white/10 bg-[#102b2a] px-5 py-4 shadow-xl sm:block"><p class="text-xs uppercase tracking-wider text-teal-200">Una idea, muchas opciones</p><p class="mt-1 text-sm font-medium text-white">Descubrí dónde conseguirla</p></div>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-5 py-5 text-xs font-medium uppercase tracking-[0.14em] text-slate-400 sm:px-8"><span>Curiosidad sin fronteras</span><span class="text-teal-300">Discover · Explore · Find</span></div>
     </div>
   </section>
-  <section class="mx-auto max-w-7xl px-5 py-16 sm:px-8">
-    <div class="mb-9 flex items-end justify-between gap-4">
-      <div><p class="text-sm font-bold uppercase tracking-[0.18em] text-teal-700">SELECCIÓN CURADA</p><h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-950">Productos para descubrir</h2></div>
-      <a href="/products/" class="text-sm font-semibold text-teal-700 hover:underline">Ver catálogo →</a>
+
+  <section class="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+    <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+      <div><p class="text-xs font-bold uppercase tracking-[0.2em] text-teal-700">Tu próxima buena idea</p><h2 class="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">Un mundo para explorar</h2><p class="mt-3 max-w-xl leading-7 text-slate-600">Encontrá inspiración en diferentes categorías y seguí el camino hasta la tienda.</p></div>
+      <a href="/products/" class="inline-flex items-center gap-2 font-semibold text-teal-800 hover:text-teal-600">Ver catálogo completo <span aria-hidden="true">→</span></a>
     </div>
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{items.map((product) => <ProductCard product={product} lang="es" />)}</div>
+    <div class="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <a href="/products/?q=audio" class="group rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:border-teal-300 hover:shadow-lg"><span class="text-3xl" aria-hidden="true">♫</span><h3 class="mt-5 text-lg font-semibold text-slate-900">Audio</h3><p class="mt-1 text-sm text-slate-500">Sonido para cada momento</p><span class="mt-5 inline-block text-teal-700 transition group-hover:translate-x-1">Explorar →</span></a>
+      <a href="/products/?q=tech" class="group rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:border-teal-300 hover:shadow-lg"><span class="text-3xl" aria-hidden="true">⌘</span><h3 class="mt-5 text-lg font-semibold text-slate-900">Tecnología</h3><p class="mt-1 text-sm text-slate-500">Ideas que conectan</p><span class="mt-5 inline-block text-teal-700 transition group-hover:translate-x-1">Explorar →</span></a>
+      <a href="/products/?q=home" class="group rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:border-teal-300 hover:shadow-lg"><span class="text-3xl" aria-hidden="true">⌂</span><h3 class="mt-5 text-lg font-semibold text-slate-900">Hogar</h3><p class="mt-1 text-sm text-slate-500">Detalles para tus espacios</p><span class="mt-5 inline-block text-teal-700 transition group-hover:translate-x-1">Explorar →</span></a>
+      <a href="/products/" class="group rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:border-teal-300 hover:shadow-lg"><span class="text-3xl" aria-hidden="true">✳</span><h3 class="mt-5 text-lg font-semibold text-slate-900">Todo el catálogo</h3><p class="mt-1 text-sm text-slate-500">Mirá la selección completa</p><span class="mt-5 inline-block text-teal-700 transition group-hover:translate-x-1">Explorar →</span></a>
+    </div>
   </section>
-  <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-8">
-    <div class="rounded-3xl bg-slate-100 p-8 sm:p-12"><p class="text-sm font-bold uppercase tracking-[0.18em] text-teal-700">CÓMO FUNCIONA</p><h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Descubrir, comparar, encontrar</h2><div class="mt-8 grid gap-6 sm:grid-cols-3"><div><span class="text-2xl font-bold text-teal-700">01</span><h3 class="mt-2 font-semibold text-slate-900">Descubrí</h3><p class="mt-1 text-sm leading-6 text-slate-600">Explorá productos seleccionados.</p></div><div><span class="text-2xl font-bold text-teal-700">02</span><h3 class="mt-2 font-semibold text-slate-900">Compará</h3><p class="mt-1 text-sm leading-6 text-slate-600">Revisá sus detalles y las opciones de tiendas.</p></div><div><span class="text-2xl font-bold text-teal-700">03</span><h3 class="mt-2 font-semibold text-slate-900">Visitá una tienda</h3><p class="mt-1 text-sm leading-6 text-slate-600">Continuá tu compra en el sitio del vendedor.</p></div></div></div>
+
+  {items.length > 0 && <section class="bg-slate-50">
+    <div class="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+      <div class="mb-9 flex items-end justify-between gap-4"><div><p class="text-xs font-bold uppercase tracking-[0.2em] text-teal-700">Selección curada</p><h2 class="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">Productos para descubrir</h2></div><a href="/products/" class="hidden font-semibold text-teal-800 hover:text-teal-600 sm:inline">Ver catálogo →</a></div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{items.map((product) => <ProductCard product={product} lang="es" />)}</div>
+    </div>
+  </section>}
+
+  <section class="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+    <div class="overflow-hidden rounded-[2rem] bg-[#0b2423] px-7 py-10 text-white sm:px-12 sm:py-14">
+      <p class="text-xs font-bold uppercase tracking-[0.2em] text-teal-300">Simple y transparente</p><h2 class="mt-3 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">De la inspiración a la tienda, sin vueltas.</h2>
+      <div class="mt-9 grid gap-8 sm:grid-cols-3"><div><span class="text-sm font-bold text-teal-300">01 / DESCUBRÍ</span><h3 class="mt-3 text-lg font-semibold">Encontrá ideas</h3><p class="mt-2 text-sm leading-6 text-slate-300">Explorá productos y novedades que despierten tu curiosidad.</p></div><div><span class="text-sm font-bold text-teal-300">02 / CONOCÉ</span><h3 class="mt-3 text-lg font-semibold">Revisá los detalles</h3><p class="mt-2 text-sm leading-6 text-slate-300">Conocé el producto y consultá la información disponible.</p></div><div><span class="text-sm font-bold text-teal-300">03 / ELEGÍ</span><h3 class="mt-3 text-lg font-semibold">Visitá una tienda</h3><p class="mt-2 text-sm leading-6 text-slate-300">La compra se realiza directamente con el vendedor externo.</p></div></div>
+      <p class="mt-9 border-t border-white/10 pt-5 text-xs leading-5 text-slate-400">WhereToBuy es un catálogo de descubrimiento, no una tienda. Los productos marcados como demo son ficticios; los precios y enlaces pueden variar o ser ilustrativos.</p>
+    </div>
   </section>
 </Layout>
