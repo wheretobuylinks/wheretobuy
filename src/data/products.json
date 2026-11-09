@@ -1,0 +1,30 @@
+[
+  {
+    "id": "demo-headphones-001",
+    "slug": "atlas-one-wireless-headphones",
+    "status": "published",
+    "category": "audio",
+    "brand": "Atlas",
+    "title": {
+      "es": "Auriculares inalámbricos Atlas One",
+      "en": "Atlas One wireless headphones"
+    },
+    "description": {
+      "es": "Producto ficticio de demostración para probar el catálogo, la ficha de producto y el diseño de WhereToBuy. La información y la tienda enlazada son ilustrativas.",
+      "en": "A fictional demo product to test the WhereToBuy catalog, product detail page, and design. Product information and linked store are illustrative."
+    },
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=85",
+    "tags": ["audio", "wireless", "headphones"],
+    "stores": [
+      {
+        "name": "Amazon",
+        "region": "global",
+        "url": "https://www.amazon.com/",
+        "price": null,
+        "currency": null,
+        "demo": true
+      }
+    ],
+    "demo": true
+  }
+]
